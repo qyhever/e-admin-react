@@ -1,9 +1,8 @@
 import React, { Component, Suspense } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-// import { matchRoutes } from 'react-router-config'
 import { getToken } from '@/utils/local'
-import PageLoading from '@/components/page-loading'
+import RouterLoading from '@/components/router-loading'
 
 function checkPermission(route, user) {
   const currentRoute = route || {}
@@ -31,7 +30,7 @@ function withAuthRouter(OriginalComponent) {
         return <Redirect to={{ pathname: '/404' }} />
       }
       return (
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<RouterLoading/>}>
           <OriginalComponent {...this.props} />
         </Suspense>
       )

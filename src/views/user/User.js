@@ -43,14 +43,11 @@ class User extends Component {
   }
   query = async () => {
     try {
-      this.setState({
-        loading: true
-      })
       const params = Object.assign({}, this.form, this.sorter, {
         page: this.state.page,
         size: this.state.size
       })
-      const res = await getUsers(params)
+      const res = await getUsers(loading => this.setState({loading}), params)
       if (res.success) {
         this.setState({
           list: res.data.list || [],
@@ -60,9 +57,7 @@ class User extends Component {
     } catch (err) {
       console.log(err)
     } finally {
-      this.setState({
-        loading: false
-      })
+      // ...
     }
   }
   handleSearch = e => {

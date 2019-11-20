@@ -47,7 +47,9 @@ export default {
   state: {
     user: {},
     menus: [],
-    breads: []
+    breads: [],
+    pageLoading: false,
+    loading: false
   },
   reducers: {
     updateState(state, payload) {

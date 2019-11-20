@@ -1,4 +1,5 @@
 import axios from '@/utils/axios'
+import request from '@/utils/request'
 
 export const login = data => {
   return axios({
@@ -15,8 +16,15 @@ export const getInfo = () => {
   })
 }
 
-export const getUsers = params => {
-  return axios({
+// export const getUsers = params => {
+//   return axios({
+//     method: 'get',
+//     url: '/user',
+//     params
+//   })
+// }
+export const getUsers = (fn, params) => {
+  return request(fn)({
     method: 'get',
     url: '/user',
     params

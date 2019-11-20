@@ -7,6 +7,7 @@ import styles from './BasicLayout.module.less'
 import HeaderBar from './HeaderBar'
 import Bread from './Bread'
 import Sidebar from './Sidebar'
+import PageLoading from '@/components/page-loading'
 const { Content, Footer } = Layout
 
 @connect(({ app }) => ({ app }))
@@ -26,7 +27,7 @@ class BasicLayout extends Component {
       [styles.unfold]: collapsed
     })
     const { app, location, route, dispatch, history } = this.props
-    const { menus, user, breads } = app
+    const { menus, user, breads, pageLoading } = app
     const headerProps = {
       collapsed,
       onToggle: this.handleToggle,
@@ -60,6 +61,7 @@ class BasicLayout extends Component {
           </Content>
           <Footer className={styles.footer}>正在缓冲99% ©2019 Created by platchar</Footer>
         </Layout>
+        <PageLoading spinning={pageLoading} />
       </div>
     )
   }
