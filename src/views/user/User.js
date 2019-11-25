@@ -13,7 +13,6 @@ const { Option } = Select
 class User extends Component {
   state = {
     loading: false,
-    deleting: false,
     list: [],
     total: 0,
     page: 1,
@@ -56,8 +55,6 @@ class User extends Component {
       }
     } catch (err) {
       console.log(err)
-    } finally {
-      // ...
     }
   }
   handleSearch = e => {
@@ -99,10 +96,7 @@ class User extends Component {
   }
   handleToggleEnable = async (record) => {
     try {
-      this.setState({
-        loading: true
-      })
-      const res = await patchUser({
+      const res = await patchUser(loading => this.setState({loading}), {
         id: record.id,
         enable: !record.enable
       })
@@ -124,10 +118,6 @@ class User extends Component {
       }
     } catch (err) {
       console.log(err)
-    } finally {
-      this.setState({
-        loading: false
-      })
     }
   }
   handleDelete = (record) => {
@@ -135,29 +125,19 @@ class User extends Component {
       title: '温馨提示',
       content: '确定要删除吗？',
       centered: true,
-      onOk: () => {
-        this.setState({
-          deleting: true,
-          loading: true
-        }, async () => {
-          try {
-            const res = await deleteUser({
-              id: record.id
-            })
-            if (res.success) {
-              this.query()
-              message.destroy()
-              message.success('删除成功')
-            }
-          } catch (err) {
-            console.log(err)
-          } finally {
-            this.setState({
-              deleting: false,
-              loading: false
-            })
+      onOk: async () => {
+        try {
+          const res = await deleteUser(loading => this.setState({loading}), {
+            id: record.id
+          })
+          if (res.success) {
+            this.query()
+            message.destroy()
+            message.success('删除成功')
           }
-        })
+        } catch (err) {
+          console.log(err)
+        }
       },
       onCancel: () => {
         // ...
@@ -290,7 +270,7 @@ class User extends Component {
         return (
           <span>
             <Button type="link" onClick={() => this.handleEdit(record)}>编辑</Button>
-            <Button type="link" disabled={this.state.deleting} onClick={() => this.handleDelete(record)}>删除</Button>
+            <Button type="link" disabled={loading} onClick={() => this.handleDelete(record)}>删除</Button>
           </span>
         )
       }

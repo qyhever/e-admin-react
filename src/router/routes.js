@@ -1,22 +1,11 @@
-// import Loadable from 'react-loadable'
 import { lazy } from 'react'
-import withAuthRouter from './WithAuthRouter'
+import withAuthRouter from './withAuthRouter'
 
-// import Login from '@/views/login'
 import BasicLayout from '@/layouts/BasicLayout'
 import BlankLayout from '@/layouts/BlankLayout'
-// import Dashboard from '@/views/dashboard'
-// import User from '@/views/user'
-// import Clipboard from '@/views/base/clipboard'
-// import Qrcode from '@/views/base/qrcode'
 import Exception404 from '@/views/exception/Exception404'
 
 export default [
-  // {
-  //   path: '/login',
-  //   component: Login,
-  //   exact: true
-  // },
   {
     component: BasicLayout,
     routes: [
@@ -45,6 +34,11 @@ export default [
             component: withAuthRouter(lazy(() => import('@/views/base/qrcode'))),
             title: '二维码',
             auth: ['qrcode']
+          },
+          {
+            path: '*',
+            component: Exception404,
+            hidden: true
           }
         ]
       },

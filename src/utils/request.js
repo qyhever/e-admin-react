@@ -52,7 +52,7 @@ const instance = axios.create({
 })
 /**
  * @param {Object} options 请求配置参数
- * @param {Boolean} [options.getResponse=false] 是否直接返回 axios response
+ * @param {Boolean} [options.getResponseSchema=false] 是否直接返回 axios Response Schema
  * @param {Boolean} [options.showWarningMsg=true] 是否显示接口错误提示（请求成功，但接口状态码非成功状态）
  * @param {Boolean} [options.showErrorMsg=true] 是否显示请求错误提示（请求失败）
  * @param {Boolean} [options.showPageLoading=false] 是否显示全屏 loading
@@ -62,7 +62,7 @@ const instance = axios.create({
  */
 const _request = (
   {
-    getResponse = false,
+    getResponseSchema=false,
     showWarningMsg = true,
     showErrorMsg = true,
     showPageLoading = false,
@@ -84,8 +84,8 @@ const _request = (
   })
   return instance(options)
     .then(response => {
-      if (getResponse) { // return the origin Response
-        return Promise.resolve(response)
+      if (getResponseSchema) { // return the axios Response Schema
+        return response
       }
       const responseData = response.data || {}
       if (responseData.code === 1) { // success code

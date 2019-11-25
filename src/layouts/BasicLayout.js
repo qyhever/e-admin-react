@@ -44,7 +44,8 @@ class BasicLayout extends Component {
       location
     }
     const branch = matchRoutes(route.routes, location.pathname)
-    const isNotFound = branch[0].match.path === '*' || branch[0].match.path === '/404'
+    // 只要匹配到 * 或者 /404 路径的，就为 Not Found
+    const isNotFound = branch.some(item => item.route.path === '*' || item.route.path === '/404')
     const contentStyle = {
       paddingTop: isNotFound ? 24 : 0
     }
