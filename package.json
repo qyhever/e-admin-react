@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/core": "7.6.0",
     "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "@rematch/core": "^1.2.0",
     "@rematch/loading": "^1.2.1",
@@ -23,7 +24,7 @@
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.5.2",
-    "core-js": "2.6.5",
+    "core-js": "3",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "5.1.0",
@@ -50,6 +51,7 @@
     "less-loader": "^5.0.0",
     "md5": "^2.2.1",
     "mini-css-extract-plugin": "0.8.0",
+    "nprogress": "^0.2.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.5.0",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -88,22 +90,13 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all",
-      "last 5 versions",
-      "not ie <= 8"
-    ],
-    "development": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all",
-      "last 5 versions",
-      "not ie <= 8"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all",
+    "last 20 versions",
+    "not ie <= 8"
+  ],
   "jest": {
     "roots": [
       "<rootDir>/src"
@@ -157,19 +150,15 @@
       [
         "@babel/preset-env",
         {
-          "corejs": 2,
-          "useBuiltIns": "usage",
-          "targets": {
-            "chrome": "58",
-            "ie": "9"
-          }
+          "useBuiltIns": "entry",
+          "corejs": 3
         }
       ],
       "react-app"
     ],
     "plugins": [
       [
-        "import",
+        "babel-plugin-import",
         {
           "libraryName": "antd",
           "libraryDirectory": "es",

@@ -35,11 +35,47 @@ const generateMenus = (menus) => {
 }
 
 export default class Sidebar extends Component {
+  constructor(props) {
+    super(props)
+    this.rootMenuKeys = props.menus.filter(item => Array.isArray(item.routes)).map(item => item.path)
+    this.openKeys = []
+    const openKey = this.rootMenuKeys.find(key => props.location.pathname.startsWith(key))
+    this.state = {
+      openKeys: [openKey],
+      collapsed: false,
+      lastOpenKeys: []
+    }
+  }
+  static getDerivedStateFromProps(props, state) {
+    if (props.collapsed !== state.collapsed) {
+      if (props.collapsed) {
+        state.lastOpenKeys = state.openKeys
+        return {
+          collapsed: props.collapsed,
+          openKeys: []
+        }
+      }
+      return {
+        collapsed: props.collapsed,
+        openKeys: state.lastOpenKeys
+      }
+    }
+    return null
+  }
+  onOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) < 0)
+    if (this.rootMenuKeys.indexOf(latestOpenKey) < 0) {
+      this.setState({ openKeys })
+    } else {
+      this.setState({
+        openKeys: latestOpenKey ? [latestOpenKey] : []
+      })
+    }
+  }
   render() {
     const { collapsed, menus, location } = this.props
     let { pathname } = location
     pathname = pathname === '/' ? '/dashboard' : pathname
-    const openKey = pathname.slice(0, pathname.slice(1).indexOf('/') + 1 )
     return (
       <Sider
         width={210}
@@ -54,10 +90,11 @@ export default class Sidebar extends Component {
             {!collapsed && <h1 className={styles.title}>后台管理系统</h1>}
           </Link>
           <Menu
-            defaultSelectedKeys={[pathname]}
-            defaultOpenKeys={[openKey]}
             mode="inline"
             theme="dark"
+            defaultSelectedKeys={[pathname]}
+            openKeys={this.state.openKeys}
+            onOpenChange={this.onOpenChange}
           >
           {generateMenus(menus)}
           </Menu>

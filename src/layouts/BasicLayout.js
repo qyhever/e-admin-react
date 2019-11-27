@@ -3,6 +3,8 @@ import { Layout } from 'antd'
 import { renderRoutes, matchRoutes } from 'react-router-config'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import styles from './BasicLayout.module.less'
 import HeaderBar from './HeaderBar'
 import Bread from './Bread'
@@ -13,8 +15,44 @@ const { Content, Footer } = Layout
 @connect(({ app }) => ({ app }))
 class BasicLayout extends Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    pathname: ''
   }
+  componentDidMount() {
+    NProgress.done()
+    // this.setDocumentTitle(this.props)
+    // this.props.history.listen(route => {
+    //   console.log(route)
+    //   NProgress.start()
+    // })
+  }
+  static getDerivedStateFromProps(props, state) {
+    if (props.location.pathname !== state.pathname) {
+      NProgress.start()
+      return {
+        pathname: props.location.pathname
+      }
+    }
+    return null
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      // const el = document.getElementById('main')
+      // scrollTo(el, el.scrollTop, 0, 0)
+    }
+    // this.setDocumentTitle(nextProps)
+    NProgress.done()
+  }
+  componentWillUnmount() {
+    NProgress.done()
+  }
+  // setDocumentTitle = (props) => {
+  //   routes.forEach(route => {
+  //     if (route.path === props.location.pathname) {
+  //       document.title = route.title || 'e-admin'
+  //     }
+  //   })
+  // }
   handleToggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
