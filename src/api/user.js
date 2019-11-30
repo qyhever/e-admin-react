@@ -1,8 +1,7 @@
-import axios from '@/utils/axios'
 import request from '@/utils/request'
 
 export const login = data => {
-  return axios({
+  return request({
     method: 'post',
     url: '/user/login',
     data
@@ -10,14 +9,14 @@ export const login = data => {
 }
 
 export const getInfo = () => {
-  return axios({
+  return request({
     method: 'get',
     url: '/user/current'
   })
 }
 
 // export const getUsers = params => {
-//   return axios({
+//   return request({
 //     method: 'get',
 //     url: '/user',
 //     params
@@ -32,7 +31,7 @@ export const getUsers = (fn, params) => {
 }
 
 export const createUser = params => {
-  return axios({
+  return request({
     method: 'post',
     url: '/user',
     data: params
@@ -40,7 +39,7 @@ export const createUser = params => {
 }
 
 export const updateUser = params => {
-  return axios({
+  return request({
     method: 'put',
     url: '/user',
     data: params

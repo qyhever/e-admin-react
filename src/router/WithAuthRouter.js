@@ -13,7 +13,7 @@ function checkPermission(route, user) {
   // 当前用户拥有权限
   const resourceCodes = resources.map(item => item.code)
   if (auth && Array.isArray(auth)) {
-    return auth.every(code => resourceCodes.includes(code))
+    return auth.some(code => resourceCodes.includes(code))
   }
   return true
 }
@@ -27,7 +27,7 @@ function withAuthRouter(OriginalComponent) {
       }
       const hasAuth = checkPermission(this.props.route, this.props.app.user)
       if (!hasAuth) {
-        return <Redirect to={{ pathname: '/404' }} />
+        return <Redirect to={{ pathname: '/403' }} />
       }
       return (
         <Suspense fallback={<RouterLoading/>}>

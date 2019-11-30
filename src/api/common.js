@@ -1,7 +1,7 @@
-import axios from '@/utils/axios'
+import request from '@/utils/request'
 
 export function getQiniuToken() {
-  return axios({
+  return request({
     method: 'get',
     url: '/upload/qiniu_token'
   })

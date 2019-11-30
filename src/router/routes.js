@@ -3,7 +3,8 @@ import withAuthRouter from './withAuthRouter'
 
 import BasicLayout from '@/layouts/BasicLayout'
 import BlankLayout from '@/layouts/BlankLayout'
-import Exception404 from '@/views/exception/Exception404'
+import Exception404 from '@/views/exception/404'
+import Exception403 from '@/views/exception/403'
 
 export default [
   {
@@ -105,6 +106,13 @@ export default [
         title: 'test',
         icon: 'icon-test',
         auth: ['testPage']
+      },
+      {
+        path: '/403',
+        component: Exception403,
+        exact: true,
+        title: '403',
+        hidden: true
       },
       {
         path: '/404',

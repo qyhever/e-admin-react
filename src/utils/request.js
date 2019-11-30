@@ -36,9 +36,9 @@ const _setLoading = (setLoading, value) => {
 const instance = axios.create({
   baseURL,
   headers: {
-    'Content-Type': 'application/json charset=UTF-8'
+    'Content-Type': 'application/json;charset=UTF-8'
   },
-  // 过滤掉空的 params 参数（拼接在url 中的参数）
+  // 只作用于 params（手动拼接在 url 后的参数不走这里）
   paramsSerializer(params) {
     const data = {}
     for (const k in params) {
@@ -62,14 +62,14 @@ const instance = axios.create({
  */
 const _request = (
   {
-    getResponseSchema=false,
+    getResponseSchema = false,
     showWarningMsg = true,
     showErrorMsg = true,
     showPageLoading = false,
     setLoading = false,
     ...options
   } = {},
-  fn = () => {}
+  fn = () => {} // eslint-disable-line
 ) => {
   instance.interceptors.request.use(config => {
     const token = getToken()

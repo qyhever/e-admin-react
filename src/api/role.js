@@ -1,7 +1,7 @@
-import axios from '@/utils/axios'
+import request from '@/utils/request'
 
 export const getRoles = params => {
-  return axios({
+  return request({
     method: 'get',
     url: '/role',
     params
@@ -9,14 +9,14 @@ export const getRoles = params => {
 }
 
 export const getTotalRoles = () => {
-  return axios({
+  return request({
     method: 'get',
     url: '/role/total'
   })
 }
 
 export const createRole = params => {
-  return axios({
+  return request({
     method: 'post',
     url: '/role',
     data: params
@@ -24,7 +24,7 @@ export const createRole = params => {
 }
 
 export const updateRole = params => {
-  return axios({
+  return request({
     method: 'put',
     url: '/role',
     data: params
@@ -32,7 +32,7 @@ export const updateRole = params => {
 }
 
 export const deleteRole = params => {
-  return axios({
+  return request({
     method: 'delete',
     url: `/role/${params.id}`
   })

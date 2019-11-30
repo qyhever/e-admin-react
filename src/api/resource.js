@@ -1,7 +1,7 @@
-import axios from '@/utils/axios'
+import request from '@/utils/request'
 
 export const getResources = params => {
-  return axios({
+  return request({
     method: 'get',
     url: '/resource',
     params
@@ -9,7 +9,7 @@ export const getResources = params => {
 }
 
 export const getTotalResources = params => {
-  return axios({
+  return request({
     method: 'get',
     url: '/resource/total',
     params
@@ -17,7 +17,7 @@ export const getTotalResources = params => {
 }
 
 export const getDirs = params => {
-  return axios({
+  return request({
     method: 'get',
     url: '/resource/dir',
     params
@@ -25,7 +25,7 @@ export const getDirs = params => {
 }
 
 export const createResource = params => {
-  return axios({
+  return request({
     method: 'post',
     url: '/resource',
     data: params
@@ -33,7 +33,7 @@ export const createResource = params => {
 }
 
 export const updateResource = params => {
-  return axios({
+  return request({
     method: 'put',
     url: '/resource',
     data: params
@@ -41,7 +41,7 @@ export const updateResource = params => {
 }
 
 export const patchResource = params => {
-  return axios({
+  return request({
     method: 'patch',
     url: '/resource',
     data: params
@@ -49,7 +49,7 @@ export const patchResource = params => {
 }
 
 export const deleteResource = params => {
-  return axios({
+  return request({
     method: 'delete',
     url: `/resource/${params.id}`,
     params
