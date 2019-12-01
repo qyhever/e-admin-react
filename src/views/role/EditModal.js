@@ -27,7 +27,7 @@ class EditModal extends Component {
   handleOk = (e) => {
     e.preventDefault()
     this.props.form.validateFields(async (err, values) => {
-      try{
+      try {
         if (err) return
         const { detail } = this.state
         this.setState({
@@ -54,7 +54,7 @@ class EditModal extends Component {
           this.handleCancel()
           detail.id ? onEditSuccess() : onCreateSuccess()
         }
-      } catch(err){
+      } catch (err){
         console.log(err)
       } finally {
         this.setState({

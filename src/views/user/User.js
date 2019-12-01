@@ -120,6 +120,9 @@ class User extends Component {
       console.log(err)
     }
   }
+  handlePreview = (record) => {
+    this.props.history.push(`/user/detail?id=${record.id}`)
+  }
   handleDelete = (record) => {
     Modal.confirm({
       title: '温馨提示',
@@ -269,6 +272,7 @@ class User extends Component {
         }
         return (
           <span>
+            <Button type="link" onClick={() => this.handlePreview(record)}>查看</Button>
             <Button type="link" onClick={() => this.handleEdit(record)}>编辑</Button>
             <Button type="link" disabled={loading} onClick={() => this.handleDelete(record)}>删除</Button>
           </span>

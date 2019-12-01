@@ -12,7 +12,7 @@ const PageLoading = ({spinning = false}) => {
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    background: 'rgba(255, 255, 255, .5)',
+    background: 'rgba(255, 255, 255, .5)'
   }
   return (
     <div style={pageLoadingStyle}>

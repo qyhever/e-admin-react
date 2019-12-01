@@ -36,7 +36,7 @@ class Login extends Component {
             <FormItem hasFeedback>
               {getFieldDecorator('userName', {
                 initialValue: 'admin',
-                rules: [{ required: true, message: '请输入账号!' }],
+                rules: [{ required: true, message: '请输入账号!' }]
               })(
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -47,7 +47,7 @@ class Login extends Component {
             <FormItem hasFeedback>
               {getFieldDecorator('password', {
                 initialValue: '123456',
-                rules: [{ required: true, message: '请输入密码!' }],
+                rules: [{ required: true, message: '请输入密码!' }]
               })(
                 <Input
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}

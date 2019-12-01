@@ -16,7 +16,7 @@ class EditModal extends Component {
   handleOk = (e) => {
     e.preventDefault()
     this.props.form.validateFields(async (err, values) => {
-      try{
+      try {
         if (err) return
         const { detail } = this.props
         this.setState({
@@ -41,7 +41,7 @@ class EditModal extends Component {
           message.success(detail.id ? '修改成功' : '添加成功')
           detail.id ? onEditSuccess() : onCreateSuccess()
         }
-      } catch(err){
+      } catch (err) {
         console.log(err)
       } finally {
         this.setState({

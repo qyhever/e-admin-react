@@ -44,11 +44,42 @@ export default [
         ]
       },
       {
+        path: '/richtext',
+        title: '富文本',
+        icon: 'edit',
+        component: BlankLayout,
+        routes: [
+          {
+            path: '/richtext/quill',
+            component: withAuthRouter(lazy(() => import('@/views/richtext/Quill'))),
+            title: 'quill'
+          },
+          {
+            path: '/richtext/tinymce',
+            component: withAuthRouter(lazy(() => import('@/views/richtext/Tinymce'))),
+            title: 'tinymce'
+          },
+          {
+            path: '*',
+            component: Exception404,
+            hidden: true
+          }
+        ]
+      },
+      {
         path: '/user',
         component: withAuthRouter(lazy(() => import('@/views/user'))),
         exact: true,
         title: '账号管理',
         icon: 'user',
+        auth: ['user']
+      },
+      {
+        path: '/user/detail',
+        component: withAuthRouter(lazy(() => import('@/views/user/Detail'))),
+        exact: true,
+        title: '账号详情',
+        hidden: true,
         auth: ['user']
       },
       {

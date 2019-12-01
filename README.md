@@ -52,3 +52,5 @@ yarn run build
 - nprogress 进度条
 - less
 - less-loader
+- babel-plugin-import
+- cross-env

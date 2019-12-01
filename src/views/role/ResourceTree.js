@@ -63,7 +63,7 @@ class MenuTree extends Component {
   })
 
   render() {
-    const { resourceTree }  = this.props
+    const { resourceTree } = this.props
     // // expandedKeys：默认全部展开
     // const expandedKeys = resourceTree.map(item => item.name)
     

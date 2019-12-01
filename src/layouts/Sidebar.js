@@ -8,6 +8,22 @@ import { Scrollbars } from 'react-custom-scrollbars'
 const { Sider } = Layout
 const { Item, SubMenu } = Menu
 
+const getTotalSelectedKeys = routes => {
+  const getTotalSelectedRoutes = routes => {
+    let result = []
+    routes.forEach(item => {
+      if (Array.isArray(item.routes)) {
+        result = result.concat(getTotalSelectedRoutes(item.routes))
+      } else {
+        result.push(item)
+      }
+    })
+    return result.filter(item => !item.hidden && !item.routes)
+  }
+  const totalSelectedRoutes = getTotalSelectedRoutes(routes)
+  return totalSelectedRoutes.map(item => item.path)
+}
+
 const generateMenus = (menus) => {
   return menus.map(item => {
     if (Array.isArray(item.routes)) {
@@ -38,6 +54,8 @@ export default class Sidebar extends Component {
   constructor(props) {
     super(props)
     this.rootMenuKeys = props.menus.filter(item => Array.isArray(item.routes)).map(item => item.path)
+    this.totalSelectedKeys = getTotalSelectedKeys(props.menus)
+    this.selectedKey = this.totalSelectedKeys.find(key => props.location.pathname.startsWith(key))
     this.openKeys = []
     const openKey = this.rootMenuKeys.find(key => props.location.pathname.startsWith(key))
     this.state = {
@@ -46,6 +64,9 @@ export default class Sidebar extends Component {
       lastOpenKeys: []
     }
   }
+  // hack 菜单折叠后，子菜单不消失的 问题
+  // 原因：菜单折叠后，openKeys 并没有清空
+  // https://github.com/ant-design/ant-design/issues/14536
   static getDerivedStateFromProps(props, state) {
     if (props.collapsed !== state.collapsed) {
       if (props.collapsed) {
@@ -62,6 +83,7 @@ export default class Sidebar extends Component {
     }
     return null
   }
+  // 只展开当前父级菜单
   onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) < 0)
     if (this.rootMenuKeys.indexOf(latestOpenKey) < 0) {
@@ -73,9 +95,7 @@ export default class Sidebar extends Component {
     }
   }
   render() {
-    const { collapsed, menus, location } = this.props
-    let { pathname } = location
-    pathname = pathname === '/' ? '/dashboard' : pathname
+    const { collapsed, menus } = this.props
     return (
       <Sider
         width={210}
@@ -92,7 +112,7 @@ export default class Sidebar extends Component {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={[pathname]}
+            defaultSelectedKeys={[this.selectedKey]}
             openKeys={this.state.openKeys}
             onOpenChange={this.onOpenChange}
           >

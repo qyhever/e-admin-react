@@ -76,8 +76,8 @@ class Avatar extends Component {
       </div>
     )
     const {
-      uploadClass=styles.uploadClass,
-      imgClass=styles.imgClass,
+      uploadClass = styles.uploadClass,
+      imgClass = styles.imgClass,
       imgStyle
     } = this.props
     const uploadCls = classNames({

@@ -1,9 +1,8 @@
 import md5 from 'md5'
 import { login } from '@/api/user'
 import { setToken, removeToken, setUser, removeUser } from '@/utils/local'
-// import { setToken, clearLocal } from '@/utils/storage'
 import { push } from 'connected-react-router'
-// import { stringify } from 'qs'
+import { message } from 'antd'
 export default {
   state: {
     user: {}
@@ -27,6 +26,7 @@ export default {
         setUser(userInfo) // setUser local
         dispatch.app.initUser(userInfo) // setUser store
         dispatch(push('/dashboard'))
+        message.destroy()
       }
     },
     async logout() {
