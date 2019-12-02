@@ -54,3 +54,76 @@ import 'react-app-polyfill/ie9';
 
 https://segmentfault.com/a/1190000017957529
 
+#### webpack添加 alias
+
+`config/modules.js`文件中的`webpackAliases`的`alias`是解析项目根目录下的`tsconfig.json`或者`jsconfig.json`来返回的，不太适用
+
+可以直接在`webpack.config.js`的`resolve.alias`字段中的末尾新增字段
+
+```js
+resolve: {
+    // ...
+    alias: {
+        // ...
+        '@': path.resolve(__dirname, '../src')
+    }
+}
+```
+
+#### 项目路径配置
+
+包括项目入口文件、静态目录、项目构建输出目录、配置`proxy`文件...
+
+在`config/paths.js`文件配置，挑出几个最常用的
+
+```js
+module.exports = {
+  dotenv: resolveApp('.env'), // 项目环境变量文件
+  appBuild: resolveApp('dist'), // 项目构建输出目录，默认 build
+  appPublic: resolveApp('public'), // 静态目录
+  appHtml: resolveApp('public/index.html'), // index.html
+  appIndexJs: resolveModule(resolveApp, 'src/index'), // 项目入口文件
+  proxySetup: resolveApp('src/setupProxy.js') // 配置 proxy 文件
+}
+```
+
+#### 关闭自动开启浏览器配置
+
+在`scripts/start.js`文件，注释掉`openBrowser(urls.localUrlForBrowser)`即可
+
+#### 修改 webpack `output.publicPath`
+
+直接在`package.json`中配置`homepage`字段
+
+```json
+{
+    "homepage": "/e-admin/"
+}
+```
+
+或者在命令行中使用`PUBLIC_URL`字段
+
+```json
+{
+    "script": {
+		"build": "cross-env PUBLIC_URL=/e-admin/ node scripts/build.js"
+	}
+}
+```
+
+#### eslint配置
+
+可以直接在`package.json`中的`eslintConfig`字段配置。
+
+`package.json`文件为`json`形式且为项目依赖包文件，`eslint`的配置可以单独新建配置文件。
+
+在根目录下新建`.eslint.js`文件（或者`.eslintrc`），然后在命令行中需要设置`EXTEND_ESLINT`
+
+```json
+{
+    "script": {
+		"build": "cross-env EXTEND_ESLINT=true node scripts/build.js"
+	}
+}
+```
+
