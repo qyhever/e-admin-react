@@ -1,2 +1,0 @@
-(this["webpackJsonpe-admin-react"]=this["webpackJsonpe-admin-react"]||[]).push([[18],{935:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return o}));var a=n(62),c=n(63),r=n(66),i=n(64),u=n(65),s=n(0),l=n.n(s),o=function(e){function t(){return Object(a.a)(this,t),Object(r.a)(this,Object(i.a)(t).apply(this,arguments))}return Object(u.a)(t,e),Object(c.a)(t,[{key:"render",value:function(){return l.a.createElement("div",null,l.a.createElement("h4",null,"Tinymce"))}}]),t}(s.Component)}}]);
-//# sourceMappingURL=18.2bf81917.chunk.js.map

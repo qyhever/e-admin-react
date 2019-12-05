@@ -1,2 +1,0 @@
-(this["webpackJsonpe-admin-react"]=this["webpackJsonpe-admin-react"]||[]).push([[15],{940:function(e,n,t){"use strict";t.r(n);var a=t(0),i=t.n(a);n.default=function(){return i.a.createElement("div",null,"operation")}}}]);
-//# sourceMappingURL=15.527d385d.chunk.js.map

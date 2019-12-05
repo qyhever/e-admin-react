@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/permission/Admin.js"],"names":[],"mappings":"uHAAA,2BAEe,4BACb","file":"static/js/12.1f09e1f3.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default () => (\r\n  <div>admin</div>\r\n)\r\n"],"sourceRoot":""}

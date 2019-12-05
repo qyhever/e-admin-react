@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/permission/Test.js"],"names":[],"mappings":"uHAAA,2BAEe,4BACb","file":"static/js/16.5de99a42.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default () => (\r\n  <div>test</div>\r\n)\r\n"],"sourceRoot":""}

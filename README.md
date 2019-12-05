@@ -2,8 +2,7 @@
 
 #### 在线地址
 
-- [github](https://qyhever.top/e-admin-react)
-- [router history模式](https://qyhever.com/e-admin-react)
+- [在线预览](https://qyhever.com/e-admin-react)
 
 
 

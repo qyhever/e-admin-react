@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/permission/Operation.js"],"names":[],"mappings":"uHAAA,2BAEe,4BACb","file":"static/js/15.13dff25f.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nexport default () => (\r\n  <div>operation</div>\r\n)\r\n"],"sourceRoot":""}
