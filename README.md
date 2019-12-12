@@ -1,6 +1,6 @@
 一个使用 react + antd + create-react-app 构建的 rbac 权限模型
 
-[vue版本](https://github.com/qyhever/e-admin-react/)
+[vue版本](https://github.com/qyhever/e-admin-vue/)
 
 
 #### 在线地址
