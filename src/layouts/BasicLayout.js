@@ -10,6 +10,7 @@ import HeaderBar from './HeaderBar'
 import Bread from './Bread'
 import Sidebar from './Sidebar'
 import PageLoading from '@/components/page-loading'
+import { clearPending } from '@/utils/request'
 const { Content, Footer } = Layout
 
 @connect(({ app }) => ({ app }))
@@ -29,6 +30,7 @@ class BasicLayout extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.location.pathname !== state.pathname) {
       NProgress.start()
+      clearPending()
       return {
         pathname: props.location.pathname
       }
