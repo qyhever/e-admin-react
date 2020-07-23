@@ -8,6 +8,9 @@
 
 - [在线预览](https://qyhever.com/e-admin-react)
 
+#### create-react-app 常见配置
+
+- [链接](https://segmentfault.com/a/1190000023327242)
 
 
 #### 运行项目
