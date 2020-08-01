@@ -22,11 +22,12 @@ export const getInfo = () => {
 //     params
 //   })
 // }
-export const getUsers = (fn, params) => {
-  return request(fn)({
+export const getUsers = (loadingCb, params) => {
+  return request({
     method: 'get',
     url: '/user',
-    params
+    params,
+    loadingCb
   })
 }
 
@@ -46,18 +47,20 @@ export const updateUser = params => {
   })
 }
 
-export const patchUser = (fn, params) => {
-  return request(fn)({
+export const patchUser = (loadingCb, params) => {
+  return request({
     method: 'patch',
     url: '/user',
-    data: params
+    data: params,
+    loadingCb
   })
 }
 
-export const deleteUser = (fn, params) => {
-  return request(fn)({
+export const deleteUser = (loadingCb, params) => {
+  return request({
     method: 'delete',
     url: `/user/${params.id}`,
-    params
+    params,
+    loadingCb
   })
 }

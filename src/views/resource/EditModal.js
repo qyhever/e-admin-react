@@ -33,22 +33,19 @@ class EditModal extends Component {
         this.setState({
           submitting: true
         })
-        let res = {}
         if (detail.id) {
-          res = await updateResource({
+          await updateResource({
             ...values,
             id: detail.id
           })
         } else {
-          res = await createResource(values)
+          await createResource(values)
         }
-        if (res.success) {
-          const {onCreateSuccess, onEditSuccess} = this.props
-          message.destroy()
-          message.success(detail.id ? '修改成功' : '添加成功')
-          this.handleCancel()
-          detail.id ? onEditSuccess() : onCreateSuccess()
-        }
+        const {onCreateSuccess, onEditSuccess} = this.props
+        message.destroy()
+        message.success(detail.id ? '修改成功' : '添加成功')
+        this.handleCancel()
+        detail.id ? onEditSuccess() : onCreateSuccess()
       } catch (err){
         console.log(err)
       } finally {

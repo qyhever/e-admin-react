@@ -30,12 +30,10 @@ class User extends Component {
   queryTotalRoles = async () => {
     try {
       const res = await getTotalRoles()
-      if (res.success) {
-        const list = res.data || []
-        this.setState({
-          roles: list
-        })
-      }
+      const list = res || []
+      this.setState({
+        roles: list
+      })
     } catch (err) {
       console.log(err)
     }
@@ -47,12 +45,10 @@ class User extends Component {
         size: this.state.size
       })
       const res = await getUsers(loading => this.setState({loading}), params)
-      if (res.success) {
-        this.setState({
-          list: res.data.list || [],
-          total: res.data.total || 0
-        })
-      }
+      this.setState({
+        list: res.list || [],
+        total: res.total || 0
+      })
     } catch (err) {
       console.log(err)
     }
@@ -96,26 +92,24 @@ class User extends Component {
   }
   handleToggleEnable = async (record) => {
     try {
-      const res = await patchUser(loading => this.setState({loading}), {
+      await patchUser(loading => this.setState({loading}), {
         id: record.id,
         enable: !record.enable
       })
-      if (res.success) {
-        const list = this.state.list.map(item => {
-          if (item.id === record.id) {
-            return {
-              ...item,
-              enable: !item.enable
-            }
+      const list = this.state.list.map(item => {
+        if (item.id === record.id) {
+          return {
+            ...item,
+            enable: !item.enable
           }
-          return item
-        })
-        this.setState({
-          list
-        })
-        message.destroy()
-        message.success('操作成功')
-      }
+        }
+        return item
+      })
+      this.setState({
+        list
+      })
+      message.destroy()
+      message.success('操作成功')
     } catch (err) {
       console.log(err)
     }
@@ -130,14 +124,12 @@ class User extends Component {
       centered: true,
       onOk: async () => {
         try {
-          const res = await deleteUser(loading => this.setState({loading}), {
+          await deleteUser(loading => this.setState({loading}), {
             id: record.id
           })
-          if (res.success) {
-            this.query()
-            message.destroy()
-            message.success('删除成功')
-          }
+          this.query()
+          message.destroy()
+          message.success('删除成功')
         } catch (err) {
           console.log(err)
         }

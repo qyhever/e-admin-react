@@ -3,7 +3,7 @@ import createLoadingPlugin from '@rematch/loading'
 import { routerMiddleware, connectRouter, replace } from 'connected-react-router'
 import { getUser } from '@/utils/local'
 import models from '@/models'
-import { history } from '@/router'
+import { history } from '@/utils/history'
 
 const middleware = routerMiddleware(history)
 const loading = createLoadingPlugin()

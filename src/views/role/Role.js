@@ -39,12 +39,10 @@ class User extends Component {
         size: this.state.size
       })
       const res = await getRoles(params)
-      if (res.success) {
-        this.setState({
-          list: res.data.list || [],
-          total: res.data.total || 0
-        })
-      }
+      this.setState({
+        list: res.list || [],
+        total: res.total || 0
+      })
     } catch (err) {
       console.log(err)
     } finally {
@@ -56,13 +54,11 @@ class User extends Component {
   queryTotalResources = async () => {
     try {
       const res = await getTotalResources()
-      if (res.success) {
-        const list = res.data || []
-        const resourceTree = listToTree(list, null, 'code', 'parentCode')
-        this.setState({
-          resourceTree
-        })
-      }
+      const list = res || []
+      const resourceTree = listToTree(list, null, 'code', 'parentCode')
+      this.setState({
+        resourceTree
+      })
     } catch (err) {
       console.log(err)
     }
@@ -115,14 +111,12 @@ class User extends Component {
           loading: true
         }, async () => {
           try {
-            const res = await deleteRole({
+            await deleteRole({
               id: record.id
             })
-            if (res.success) {
-              this.query()
-              message.destroy()
-              message.success('删除成功')
-            }
+            this.query()
+            message.destroy()
+            message.success('删除成功')
           } catch (err) {
             console.log(err)
           } finally {

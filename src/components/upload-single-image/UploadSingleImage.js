@@ -4,7 +4,7 @@ import styles from './index.module.less'
 import { getQiniuToken } from '@/api/common'
 import classNames from 'classnames'
 
-const QINIU_PREFIX = 'https://qiniu.test.qyhever.com/'
+const QINIU_PREFIX = 'https://qiniu.qyhever.com/'
 const QINIU_UPLOAD_URL = 'https://upload-z2.qiniup.com'
 
 class Avatar extends Component {
@@ -56,7 +56,7 @@ class Avatar extends Component {
     return new Promise((resolve, reject) => {
       this.setState({ loading: true })
       getQiniuToken().then(res => {
-        const { token } = res.data
+        const { token } = res
         this.params.token = token
         resolve(true)
       }).catch(err => {

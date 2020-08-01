@@ -3,10 +3,12 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/es/locale/zh_CN'
-import moment from 'moment'
 import store from './store'
-import RouterConfig, { history } from './router'
+import RouterConfig from './router'
+import { history } from '@/utils/history'
+
 import './assets/styles/index.less'
+import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
 

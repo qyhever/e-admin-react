@@ -20,14 +20,12 @@ export default {
         ...payload,
         password
       })
-      if (res.success) {
-        const { token, userInfo } = res.data
-        setToken(token) // setToken local
-        setUser(userInfo) // setUser local
-        dispatch.app.initUser(userInfo) // setUser store
-        dispatch(push('/dashboard'))
-        message.destroy()
-      }
+      const { token, userInfo } = res
+      setToken(token) // setToken local
+      setUser(userInfo) // setUser local
+      dispatch.app.initUser(userInfo) // setUser store
+      dispatch(push('/dashboard'))
+      message.destroy()
     },
     async logout() {
       removeToken() // removeToken local
