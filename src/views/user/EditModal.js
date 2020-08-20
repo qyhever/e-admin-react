@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal, Form, Input, Radio, Select, message } from 'antd'
 import md5 from 'md5'
 import { modalFormItemLayout } from '@/config/layout'
-import { createUser, updateUser } from '@/api/user'
+import { createUser } from '@/api/user'
 import UploadSingleImage from '@/components/upload-single-image'
 
 const { Item: FormItem } = Form
@@ -22,18 +22,15 @@ class EditModal extends Component {
         this.setState({
           submitting: true
         })
-        if (detail.id) {
-          await updateUser({
-            ...values,
-            id: detail.id
-          })
-        } else {
-          const { password, ...params } = values
-          await createUser({
-            ...params,
-            password: md5(md5(password))
-          })
+        const params = {
+          ...values
         }
+        if (detail.id) {
+          params.id = detail.id
+        } else {
+          params.password = md5(md5(params.password))
+        }
+        await createUser(params)
         const {onCreateSuccess, onEditSuccess} = this.props
         message.destroy()
         message.success(detail.id ? '修改成功' : '添加成功')

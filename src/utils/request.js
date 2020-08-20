@@ -5,6 +5,9 @@ import { push } from 'connected-react-router'
 import { message } from 'antd'
 import { getToken } from '@/utils/local'
 
+const baseURL = '//qyhever.com/e-admin'
+// const baseURL = 'http://localhost:4399'
+
 const codeMessage = {
   400: '请求错误',
   401: '登录状态失效，请重新登录',
@@ -55,7 +58,11 @@ const requestStart = (config, loadingCb, showLoading) => {
     // Loading.open()
   }
 }
-const requestThenEnd = (response, showWarning, warningMsg, throwWarningError) => {
+const requestThenEnd = ({response, loadingCb, showLoading, showWarning, warningMsg, throwWarningError}) => {
+  loadingCb(false)
+  if (showLoading) {
+    // Loading.close()
+  }
   removePending(response.config) // 在请求结束后，移除本次请求
   const responseData = response.data || {}
   if (responseData.success) { // success code
@@ -74,10 +81,17 @@ const requestThenEnd = (response, showWarning, warningMsg, throwWarningError) =>
   }
   return genEmptyPromise()
 }
-const requestCatchEnd = (error, showError, errorMsg, throwHttpError) => {
+const requestCatchEnd = ({error, loadingCb, showLoading, showError, errorMsg, throwHttpError}) => {
+  loadingCb(false)
+  if (showLoading) {
+    // Loading.close()
+  }
   if (axios.isCancel(error)) { // 取消请求的错误，直接跳过
     console.log('repeated request: ' + error.message)
     return genEmptyPromise()
+  }
+  if (error.name === 'warning') {
+    return Promise.reject(error)
   }
   const msg = getErrorMsg(error, errorMsg)
   if (showError) {
@@ -160,7 +174,7 @@ export const clearPending = () => {
   pending.clear()
 }
 const instance = axios.create({
-  baseURL: '//qyhever.com/e-admin',
+  baseURL,
   // 只作用于 params（手动拼接在 url 后的参数不走这里）
   paramsSerializer
 })
@@ -170,8 +184,8 @@ const instance = axios.create({
  * @param {Boolean} [options.showError=true] 是否显示http错误提示（http请求失败）
  * @param {Boolean} [options.showLoading=true] 是否显示 loading
  * @param {Function} [options.loadingCb=()=>{}] loading 状态回调
- * @param {Boolean} [options.throwWarningError=false] 是否抛出业务逻辑错误（请求成功，但业务状态码非成功状态）
- * @param {Boolean} [options.throwHttpError=false] 是否显示http错误（http请求失败）
+ * @param {Boolean} [options.throwWarningError=true] 是否抛出业务逻辑错误（请求成功，但业务状态码非成功状态）
+ * @param {Boolean} [options.throwHttpError=true] 是否显示http错误（http请求失败）
  * @param {String} [options.warningMsg=''] 业务错误提示
  * @param {String} [options.errorMsg=''] http错误提示
  * @return {Promise} Promise
@@ -182,8 +196,8 @@ const request = (
     showError = true,
     showLoading = true,
     loadingCb = () => {}, // eslint-disable-line
-    throwWarningError = false,
-    throwHttpError = false,
+    throwWarningError = true,
+    throwHttpError = true,
     warningMsg = '',
     errorMsg = '',
     ...options
@@ -192,17 +206,11 @@ const request = (
   requestStart(options, loadingCb, showLoading)
   return instance(options)
     .then(response => {
-      return requestThenEnd(response, showWarning, warningMsg, throwWarningError)
+      return requestThenEnd({response, loadingCb, showLoading, showWarning, warningMsg, throwWarningError})
     })
     .catch(error => {
       console.log('request catch', error)
-      return requestCatchEnd(error, showError, errorMsg, throwHttpError)
-    })
-    .finally(() => {
-      loadingCb(false)
-      if (showLoading) {
-        // Loading.close()
-      }
+      return requestCatchEnd({error, loadingCb, showLoading, showError, errorMsg, throwHttpError})
     })
 }
 export default request

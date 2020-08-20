@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, Form, Input, Radio, Select, message } from 'antd'
 import { modalFormItemLayout } from '@/config/layout'
-import { createResource, updateResource } from '@/api/resource'
+import { createResource } from '@/api/resource'
 
 const { Item: FormItem } = Form
 const { Option } = Select
@@ -33,14 +33,13 @@ class EditModal extends Component {
         this.setState({
           submitting: true
         })
-        if (detail.id) {
-          await updateResource({
-            ...values,
-            id: detail.id
-          })
-        } else {
-          await createResource(values)
+        const params = {
+          ...values
         }
+        if (detail.id) {
+          params.id = detail.id
+        }
+        await createResource(params)
         const {onCreateSuccess, onEditSuccess} = this.props
         message.destroy()
         message.success(detail.id ? '修改成功' : '添加成功')

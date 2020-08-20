@@ -8,6 +8,7 @@ import RouterConfig from './router'
 import { history } from '@/utils/history'
 
 import './assets/styles/index.less'
+
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
