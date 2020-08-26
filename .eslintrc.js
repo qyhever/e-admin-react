@@ -44,6 +44,7 @@ module.exports = {
      */
     // 'array-bracket-spacing': ['error', 'always'], // 数组方括号内必须空格
     'comma-dangle': 2, // 禁止末尾逗号
+    'quotes': [2, 'single'],
     'eol-last': 2, // 要求文件末尾存在空行
     // 对象冒号前禁止空格，冒号后必须空格
     'key-spacing': [

@@ -1,156 +1,64 @@
-import { lazy } from 'react'
-import withAuthRouter from './withAuthRouter'
+import React, { lazy } from 'react'
+import { Redirect } from 'react-router-dom'
 
-import BasicLayout from '@/layouts/BasicLayout'
-import BlankLayout from '@/layouts/BlankLayout'
+import withAuthRouter from '@/hoc/withAuthRouter'
+import withNoAuthRouter from '@/hoc/withNoAuthRouter'
+
+import BasicLayout from '@/layouts/basic'
+import BlankLayout from '@/layouts/blank'
 import Exception404 from '@/views/exception/404'
 import Exception403 from '@/views/exception/403'
 
-export default [
+import Login from '@/views/login'
+
+function lazyComponent(path) {
+  return lazy(() => import(/* webpackChunkName: '[request]' */`@/views/${path}`))
+}
+
+export const basicRoutes = [
   {
-    component: BasicLayout,
+    path: '/dashboard',
+    component: withAuthRouter(lazyComponent('dashboard')),
+    exact: true,
+    title: '仪表盘',
+    icon: 'DesktopOutlined'
+    // auth: ['dashboard']
+  },
+  {
+    path: '/base',
+    title: '组件',
+    icon: 'AppstoreOutlined',
+    component: BlankLayout,
     routes: [
       {
-        path: '/dashboard',
-        component: withAuthRouter(lazy(() => import('@/views/dashboard'))),
-        exact: true,
-        title: '仪表盘',
-        icon: 'desktop'
-        // auth: ['dashboard']
-      },
-      {
-        path: '/base',
-        title: '组件',
-        icon: 'appstore-o',
+        path: '/base/chart',
         component: BlankLayout,
+        title: '图表',
+        icon: 'LineChartOutlined',
         routes: [
           {
-            path: '/base/clipboard',
-            component: withAuthRouter(lazy(() => import('@/views/base/clipboard'))),
-            title: '复制',
-            auth: ['clipboard']
+            path: '/base/chart/echarts',
+            component: withAuthRouter(lazyComponent('base/chart/Echarts')),
+            title: 'echarts'
           },
           {
-            path: '/base/qrcode',
-            component: withAuthRouter(lazy(() => import('@/views/base/qrcode'))),
-            title: '二维码',
-            auth: ['qrcode']
-          },
-          {
-            path: '*',
-            component: Exception404,
-            hidden: true
+            path: '/base/chart/highcharts',
+            component: withAuthRouter(lazyComponent('base/chart/Highcharts')),
+            title: 'highcharts'
           }
         ]
       },
       {
-        path: '/richtext',
-        title: '富文本',
-        icon: 'edit',
-        component: BlankLayout,
-        routes: [
-          {
-            path: '/richtext/quill',
-            component: withAuthRouter(lazy(() => import('@/views/richtext/Quill'))),
-            title: 'quill'
-          },
-          {
-            path: '/richtext/tinymce',
-            component: withAuthRouter(lazy(() => import('@/views/richtext/Tinymce'))),
-            title: 'tinymce'
-          },
-          {
-            path: '*',
-            component: Exception404,
-            hidden: true
-          }
-        ]
+        path: '/base/clipboard',
+        component: withAuthRouter(lazyComponent('base/Clipboard')),
+        title: '复制',
+        auth: ['clipboard']
       },
       {
-        path: '/user',
-        component: withAuthRouter(lazy(() => import('@/views/user'))),
-        exact: true,
-        title: '账号管理',
-        icon: 'user',
-        auth: ['user']
-      },
-      {
-        path: '/user/detail',
-        component: withAuthRouter(lazy(() => import('@/views/user/Detail'))),
-        exact: true,
-        title: '账号详情',
-        hidden: true,
-        auth: ['user']
-      },
-      {
-        path: '/role',
-        component: withAuthRouter(lazy(() => import('@/views/role'))),
-        exact: true,
-        title: '角色管理',
-        icon: 'icon-role',
-        auth: ['role']
-      },
-      {
-        path: '/resource',
-        component: withAuthRouter(lazy(() => import('@/views/resource'))),
-        exact: true,
-        title: '权限管理',
-        icon: 'icon-resources',
-        auth: ['resource']
-      },
-      {
-        path: '/admin',
-        component: withAuthRouter(lazy(() => import('@/views/permission/Admin'))),
-        exact: true,
-        title: 'admin',
-        icon: 'icon-admin',
-        auth: ['adminPage']
-      },
-      {
-        path: '/dev',
-        component: withAuthRouter(lazy(() => import('@/views/permission/Dev'))),
-        exact: true,
-        title: 'dev',
-        icon: 'icon-dev',
-        auth: ['devPage']
-      },
-      {
-        path: '/guest',
-        component: withAuthRouter(lazy(() => import('@/views/permission/Guest'))),
-        exact: true,
-        title: 'guest',
-        icon: 'icon-guest',
-        auth: ['guestPage']
-      },
-      {
-        path: '/operation',
-        component: withAuthRouter(lazy(() => import('@/views/permission/Operation'))),
-        exact: true,
-        title: 'operation',
-        icon: 'icon-operation',
-        auth: ['operationPage']
-      },
-      {
-        path: '/test',
-        component: withAuthRouter(lazy(() => import('@/views/permission/Test'))),
-        exact: true,
-        title: 'test',
-        icon: 'icon-test',
-        auth: ['testPage']
-      },
-      {
-        path: '/403',
-        component: Exception403,
-        exact: true,
-        title: '403',
-        hidden: true
-      },
-      {
-        path: '/404',
-        component: Exception404,
-        exact: true,
-        title: '404',
-        hidden: true
+        path: '/base/qrcode',
+        component: withAuthRouter(lazyComponent('base/Qrcode')),
+        title: '二维码',
+        auth: ['qrcode']
       },
       {
         path: '*',
@@ -158,5 +66,136 @@ export default [
         hidden: true
       }
     ]
+  },
+  {
+    path: '/richtext',
+    title: '富文本',
+    icon: 'EditOutlined',
+    component: BlankLayout,
+    routes: [
+      {
+        path: '/richtext/quill',
+        component: withAuthRouter(lazyComponent('richtext/Quill')),
+        title: 'quill'
+      },
+      {
+        path: '/richtext/tinymce',
+        component: withAuthRouter(lazyComponent('richtext/Tinymce')),
+        title: 'tinymce'
+      },
+      {
+        path: '*',
+        component: Exception404,
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: withAuthRouter(lazyComponent('user')),
+    exact: true,
+    title: '账号管理',
+    icon: 'UserOutlined',
+    auth: ['user']
+  },
+  {
+    path: '/user/detail',
+    component: withAuthRouter(lazyComponent('user/UserDetail')),
+    exact: true,
+    title: '账号详情',
+    hidden: true,
+    auth: ['user']
+  },
+  {
+    path: '/role',
+    component: withAuthRouter(lazyComponent('role')),
+    exact: true,
+    title: '角色管理',
+    icon: 'icon-role',
+    auth: ['role']
+  },
+  {
+    path: '/resource',
+    component: withAuthRouter(lazyComponent('resource')),
+    exact: true,
+    title: '权限管理',
+    icon: 'icon-resources',
+    auth: ['resource']
+  },
+  {
+    path: '/admin',
+    component: withAuthRouter(lazyComponent('permission/Admin')),
+    exact: true,
+    title: 'admin',
+    icon: 'icon-admin',
+    auth: ['adminPage']
+  },
+  {
+    path: '/dev',
+    component: withAuthRouter(lazyComponent('permission/Dev')),
+    exact: true,
+    title: 'dev',
+    icon: 'icon-dev',
+    auth: ['devPage']
+  },
+  {
+    path: '/operation',
+    component: withAuthRouter(lazyComponent('permission/Operation')),
+    exact: true,
+    title: 'operation',
+    icon: 'icon-operation',
+    auth: ['operationPage']
+  },
+  {
+    path: '/guest',
+    component: withAuthRouter(lazyComponent('permission/Guest')),
+    exact: true,
+    title: 'guest',
+    icon: 'icon-guest',
+    auth: ['guestPage']
+  },
+  {
+    path: '/test',
+    component: withAuthRouter(lazyComponent('permission/Test')),
+    exact: true,
+    title: 'test',
+    icon: 'icon-test',
+    auth: ['testPage']
+  },
+  {
+    path: '/403',
+    component: Exception403,
+    exact: true,
+    title: '403',
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: Exception404,
+    exact: true,
+    title: '404',
+    hidden: true
+  },
+  {
+    path: '*',
+    component: Exception404,
+    hidden: true
+  }
+]
+
+export default [
+  {
+    path: '/',
+    exact: true,
+    render: () => <Redirect to="/dashboard"/>
+  },
+  {
+    path: '/login',
+    exact: true,
+    component: withNoAuthRouter(Login)
+  },
+  {
+    component: BasicLayout,
+    routes: basicRoutes
   }
 ]

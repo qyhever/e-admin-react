@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PageWrapper from '@/components/page-wrapper'
 
-export default class Quill extends Component {
-  render() {
-    return (
-      <div>
-        <h4>Quill</h4>
-      </div>
-    )
-  }
+export default function Quill() {
+  return (
+    <PageWrapper>
+      Quill
+    </PageWrapper>
+  )
 }

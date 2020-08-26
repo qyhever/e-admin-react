@@ -1,14 +1,11 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import routes from './routes'
-
-import Login from '@/views/login'
+import { history } from '@/utils/history'
 
 export default () => (
-  <Switch>
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/" render={() => <Redirect to={{ pathname: '/dashboard' }} />} />
+  <Router history={history}>
     {renderRoutes(routes)}
-  </Switch>
+  </Router>
 )

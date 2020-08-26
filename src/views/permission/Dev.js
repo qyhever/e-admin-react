@@ -1,5 +1,10 @@
 import React from 'react'
+import PageWrapper from '@/components/page-wrapper'
 
-export default () => (
-  <div>dev</div>
-)
+export default function Dev() {
+  return (
+    <PageWrapper>
+      Dev
+    </PageWrapper>
+  )
+}

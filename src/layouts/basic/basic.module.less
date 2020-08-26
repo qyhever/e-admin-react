@@ -1,0 +1,150 @@
+.basicLayout {
+  min-height: 100vh;
+  height: auto;
+  min-width: 1220px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.sideBar {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-bottom: @toggle-theme-bar;
+  box-shadow: 0 0 18px 0 rgba(24, 144, 255, .1);
+  &.dark {
+    background-color: #001529;
+    .toggleTheme {
+      background-color: #001529;
+    }
+  }
+  &.light {
+    background-color: #fff;
+    .logoContainer .title {
+      color: #1890ff;
+    }
+    .toggleTheme {
+      background-color: #fff;
+    }
+  }
+  .logoContainer {
+    display: block;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    .image {
+      width: 48px;
+      height: 48px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .title {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+      margin-left: 12px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      animation: fadeLeftIn .5s linear;
+      animation-fill-mode: both;
+    }
+  }
+  :global {
+    .ant-menu-root {
+      width: 100% !important;
+      padding: 16px 0;
+      transition: background, width .2s ease-in-out;
+      border-right: 0;
+    }
+  }
+  .toggleTheme {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: @toggle-theme-bar;
+    align-items: center;
+    padding: 0 16px;
+    color: #666;
+    .toggleThemeLeft {
+      animation: fadeLeftIn .5s linear;
+    }
+    .toggleThemeText {
+      margin-left: 4px;
+      font-size: 12px;
+    }
+  }
+}
+.headerBar {
+  z-index: 998;
+  position: fixed;
+  top: 0;
+  left: @sidebar-width;
+  right: 0;
+  height: @header-height;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  transition: left .2s;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  .headerToggle {
+    width: @header-height;
+    height: @header-height;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      color: @primary-color;
+      background-color: #f9f9fc;
+    }
+  }
+  .headerRight {
+    .user {
+      height: @header-height;
+      padding-right: 20px;
+      cursor: pointer;
+      &:hover {
+        color: @primary-color;
+        background-color: #f9f9fc;
+      }
+    }
+    .name {
+      margin: 0 12px;
+    }
+    .avatar {
+      margin-right: 12px;
+    }
+  }
+}
+.headerPadding {
+  height: @header-height;
+}
+.appMain {
+  position: relative;
+  // min-height: 100vh;
+  // height: auto;
+  // overflow-y: auto;
+  // overflow-x: hidden;
+  margin-left: @sidebar-width;
+  transition: margin-left .2s;
+  &.collapsed {
+    margin-left: @sidebar-collapsed-width;
+    .headerBar {
+      left: @sidebar-collapsed-width;
+    }
+  }
+}
+
+@keyframes fadeLeftIn {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

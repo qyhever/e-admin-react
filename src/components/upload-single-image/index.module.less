@@ -1,45 +1,44 @@
-.icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 32px;
-  color: #999;
-}
-
-.uploadClass {
+.uploadContainer {
+  height: auto;
   :global {
-    .ant-upload.ant-upload-select.ant-upload-select-picture-card {
+    .ant-upload {
       position: relative;
       width: 128px;
       height: 128px;
     }
-    .ant-spin.ant-spin-spinning {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
   }
-}
-
-.imgClass {
-  width: 118px;
-  height: 118px;
-}
-
-:global {
-  .hover-mask .ant-upload:hover .uploadr-mask {
+  &.hoverMask :global(.ant-upload):hover .uploadMask {
     display: block;
   }
-
-  .uploadr-mask {
-    display: none;
+}
+.spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.image {
+  width: 110px;
+  height: 110px;
+}
+.uploadPlus {
+  font-size: 32px;
+  color: rgba(0, 0, 0, .4);
+}
+.uploadMask {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .3);
+  .uploadMaskPlus {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, .6);
+    font-size: 32px;
   }
 }

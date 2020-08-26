@@ -1,0 +1,29 @@
+.pageWrapper {
+  min-height: calc(100vh - @header-height);
+  padding: 20px;
+  background-color: @primary-bg-color;
+  &.hasBread {
+    padding: 0 20px 20px;
+  }
+  &.isColumn {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    height: calc(100vh - @header-height);
+    .pageContainer {
+      flex: auto;
+    }
+  }
+}
+.pageContainer {
+  border-radius: 4px;
+  padding: 18px;
+  background-color: #fff;
+}
+.bread {
+  padding: 14px 0;
+}
+.backTop {
+  right: 40px;
+  bottom: 40px;
+}

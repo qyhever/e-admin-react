@@ -1,8 +1,8 @@
-一个使用 react + antd + rematch + create-react-app 构建的 rbac 权限模型
+### e-admin-react
+一个使用 react + antd + mobx + create-react-app 构建的 rbac 权限模型
 
 - [vue版本](https://github.com/qyhever/e-admin-vue/)
-- [后端项目](https://github.com/qyhever/e-admin-server/)
-
+- [后端服务](https://github.com/qyhever/e-admin-server/)
 
 #### 在线地址
 
@@ -12,51 +12,34 @@
 
 - [链接](https://segmentfault.com/a/1190000023327242)
 
-
-#### 运行项目
-
-```shell
-yarn start
-```
-
-
-
-#### 构建项目
-
-```shell
-yarn run build
-```
-
-
-
-[connected-react-router](https://github.com/supasate/connected-react-router)
-
-一般我们都会使用`redux`来管理应用状态，使用`react-router`来操作路由。
-
-但是这两个库不协调，所以需要另外的库来把这个库集成在一起。
-
-安装`react-router-redux`后，可以通过`dispatch`的方式操作路由，把`react-router`自己维护的状态（`location、history等`）也交给`redux`管理
-
-[react-router-reudx](https://github.com/reactjs/react-router-redux)已不再维护，`react-router4.x`版本以后推荐使用`connected-react-router`来保持`redux`与`redux`之间的同步
-
 #### 项目依赖
 
 - antd `react`ui 库
-- @rematch/core `redux`的封装版
-- @rematch/loading `rematch`的`loading`插件
-- react-redux 在`react`中使用`redux`
-- react-router-dom `react`路由
+- @ant-design/icons `antd`图标组件包
+- mobx 状态管理
+- mobx-react 在 `react` 中使用 `mobx`
+- react-router-dom `react` 路由
 - react-router-config 使用配置的方式写路由
 - history 轻松管理浏览器历史记录
-- connected-react-router 同步`react-router`和`redux`
 - react-router-breadcrumbs-hoc 面包屑
 - axios `http`请求
-- md5 `md5`散列算法
-- js-base64 `base64`编码解码
-- react-custom-scrollbars 自定义滚动条组件
-- classnames 合并多个`css`类名
-- nprogress 进度条
+- qs
+- md5
+- js-base64
+- react-custom-scrollbars 自定义滚动条
 - less
 - less-loader
-- babel-plugin-import
-- cross-env
+- babel-plugin-import `antd` 按需加载 `babel` 插件
+- cross-env 设置环境变量
+- @babel/plugin-proposal-decorators 装饰器插件
+- compression-webpack-plugin 生成 gzip 文件
+- sass-resources-loader 注入全局变量，混入方法
+- webpack-bundle-analyzer 可视化打包分析插件
+- webpackbar 显示编译时间
+- react-transition-group 过渡动画
+- lodash js 工具库
+- nprogress 进度条
+- hoist-non-react-statics 复制静态方法
+- classnames css多个类名组合
+- react-helmet 修改页面title
+- gh-pages github-pages 部署

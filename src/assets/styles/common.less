@@ -1,58 +1,10 @@
-html, body, #root {
-  height: 100%;
-}
-html {
-  box-sizing: border-box;
-}
-body {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-  font-size: 14px;
-}
-*, :after, :before {
-  box-sizing: inherit;
-}
-a {
-  text-decoration: none;
-}
-a:hover, a:active, a:visited, a:focus {
-  text-decoration: none;
-}
-.cursor-pointer {
-  cursor: pointer;
-}
-.ml10 {
-  margin-left: 10px;
-}
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-.com-container {
-  flex: auto;
-  display: flex;
-  flex-direction: column;
-}
-.table-container {
-  flex: auto;
-}
-.pagination-container {
-  padding-top: 20px;
-  flex-basis: auto;
-  .ant-pagination {
-    text-align: right;
-  }
-}
-
 #nprogress {
   .bar {
-    z-index: 2199;
-    background-color: #346fff;
+    z-index: 9999;
+    background-color: @primary-color;
   }
   .spinner .spinner-icon {
-    border-top-color: #346fff;
-    border-left-color: #346fff;
+    border-top-color: @primary-color;
+    border-left-color: @primary-color;
   }
 }

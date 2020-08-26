@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PageWrapper from '@/components/page-wrapper'
 
-export default class Tinymce extends Component {
-  render() {
-    return (
-      <div>
-        <h4>Tinymce</h4>
-      </div>
-    )
-  }
+export default function Tinymce() {
+  return (
+    <PageWrapper>
+      Tinymce
+    </PageWrapper>
+  )
 }
