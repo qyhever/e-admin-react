@@ -57,12 +57,12 @@
     "static/css/31.7778d748.chunk.css": "/e-admin-react/static/css/31.7778d748.chunk.css",
     "static/js/31.4467cec6.chunk.js": "/e-admin-react/static/js/31.4467cec6.chunk.js",
     "main.css": "/e-admin-react/static/css/main.43164d99.chunk.css",
-    "main.js": "/e-admin-react/static/js/main.bd724d3f.chunk.js",
+    "main.js": "/e-admin-react/static/js/main.0cfb4353.chunk.js",
     "runtime-main.js": "/e-admin-react/static/js/runtime-main.e1788f8d.js",
     "static/css/34.2ba64a67.chunk.css": "/e-admin-react/static/css/34.2ba64a67.chunk.css",
     "static/js/34.a75be63a.chunk.js": "/e-admin-react/static/js/34.a75be63a.chunk.js",
     "index.html": "/e-admin-react/index.html",
-    "precache-manifest.049c8cd1733355b022c87274096ebea0.js": "/e-admin-react/precache-manifest.049c8cd1733355b022c87274096ebea0.js",
+    "precache-manifest.20a24fda4232f81177b8d7e0ae1b36e9.js": "/e-admin-react/precache-manifest.20a24fda4232f81177b8d7e0ae1b36e9.js",
     "service-worker.js": "/e-admin-react/service-worker.js",
     "static/js/34.a75be63a.chunk.js.LICENSE.txt": "/e-admin-react/static/js/34.a75be63a.chunk.js.LICENSE.txt",
     "static/media/index.module.less": "/e-admin-react/static/media/login.ff63ad61.jpg"
@@ -72,6 +72,6 @@
     "static/css/34.2ba64a67.chunk.css",
     "static/js/34.a75be63a.chunk.js",
     "static/css/main.43164d99.chunk.css",
-    "static/js/main.bd724d3f.chunk.js"
+    "static/js/main.0cfb4353.chunk.js"
   ]
 }
