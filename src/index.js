@@ -5,6 +5,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
+if (process.env.NODE_ENV !== 'development') {
+  console.log(`last delopy: %c${process.env.NOW}`, 'color: #67C23A')
+}
+
 ReactDOM.render(
   <App />,
   document.getElementById('root')

@@ -14,10 +14,16 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>e-admin</title>
+    <style>
+      body > a[title="站长统计"] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script src="//v1.cnzz.com/z_stat.php?id=1278235045&web_id=1278235045"></script>
     <script>
       // hack https://github.com/facebook/create-react-app/issues/5674
       if ('%NODE_ENV%' === 'development') {

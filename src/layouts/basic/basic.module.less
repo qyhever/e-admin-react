@@ -130,10 +130,19 @@
   // overflow-x: hidden;
   margin-left: @sidebar-width;
   transition: margin-left .2s;
+}
+.basicLayout {
   &.collapsed {
-    margin-left: @sidebar-collapsed-width;
-    .headerBar {
-      left: @sidebar-collapsed-width;
+    > .sideBar {
+      .toggleTheme {
+        padding: 0 8px;
+      }
+    }
+    > .appMain {
+      margin-left: @sidebar-collapsed-width;
+      .headerBar {
+        left: @sidebar-collapsed-width;
+      }
     }
   }
 }

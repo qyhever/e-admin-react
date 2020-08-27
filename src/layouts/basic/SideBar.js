@@ -145,6 +145,7 @@ class SideBar extends Component {
         className={`${styles.sideBar} ${styles[theme]}`}
         collapsible
         collapsed={collapsed}
+        collapsedWidth={60}
         trigger={null}
         theme={theme}
       >

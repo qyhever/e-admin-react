@@ -1,16 +1,10 @@
 ### e-admin-react
 一个使用 react + antd + mobx + create-react-app 构建的 rbac 权限模型
 
+- [在线预览](https://qyhever.com/e-admin-react)
 - [vue版本](https://github.com/qyhever/e-admin-vue/)
 - [后端服务](https://github.com/qyhever/e-admin-server/)
-
-#### 在线地址
-
-- [在线预览](https://qyhever.com/e-admin-react)
-
-#### create-react-app 常见配置
-
-- [链接](https://segmentfault.com/a/1190000023327242)
+- [create-react-app 常见配置](https://segmentfault.com/a/1190000023327242)
 
 #### 项目依赖
 

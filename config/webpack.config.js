@@ -136,7 +136,9 @@ module.exports = function(webpackEnv) {
               javascriptEnabled: true,
               modifyVars: {
                 'primary-color': '#346fff', // 全局主色
-                'link-color': '#346fff' // 链接色
+                'link-color': '#346fff', // 链接色
+                // https://github.com/ant-design/ant-design/issues/11422#issuecomment-408652273
+                'menu-collapsed-width': '60px'
               }
             }
           }

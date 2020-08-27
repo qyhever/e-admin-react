@@ -1,3 +1,11 @@
+export const getTitle = (title) => {
+  const baseTitle = 'e-admin'
+  if (!title) {
+    return baseTitle
+  }
+  return `${baseTitle} - ${title}`
+}
+
 export const genEmptyPromise = () => {
   return new Promise(() => {}) // eslint-disable-line
 }

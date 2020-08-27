@@ -3,7 +3,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://cnodejs.org/api/v1',
+      target: 'https://qyhever.com/e-admin',
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
