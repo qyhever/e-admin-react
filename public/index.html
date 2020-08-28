@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -13,39 +14,90 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>e-admin</title>
+  <title>e-admin</title>
+  <style>
+    body>a[title="站长统计"] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
     <style>
-      body > a[title="站长统计"] {
-        display: none;
+      @keyframes ldio {
+        0% {
+          transform: rotate(0deg)
+        }
+
+        50% {
+          transform: rotate(180deg)
+        }
+
+        100% {
+          transform: rotate(360deg)
+        }
+      }
+
+      .loadingio-eclipse {
+        width: 200px;
+        height: 200px;
+        margin: 150px auto 0;
+        overflow: hidden;
+      }
+
+      .ldio {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: translateZ(0) scale(1);
+        backface-visibility: hidden;
+        transform-origin: 0 0;
+      }
+
+      .ldio div {
+        box-sizing: content-box;
+        position: absolute;
+        animation: ldio 1s linear infinite;
+        width: 160px;
+        height: 160px;
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        box-shadow: 0 4px 0 0 #346fff;
+        transform-origin: 80px 82px;
       }
     </style>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <script src="//v1.cnzz.com/z_stat.php?id=1278235045&web_id=1278235045"></script>
-    <script>
-      // hack https://github.com/facebook/create-react-app/issues/5674
-      if ('%NODE_ENV%' === 'development') {
-        window.Map = window.Map || function() {
-          return {
-            set: function(){}
-          }
-        };
-        window.Set = window.Set || function() {
-          return {
-            set: function(){},
-            has: function(){}
-          }
-        };
-        Object.setPrototypeOf = Object.setPrototypeOf || function(obj, proto) {
-          obj.__proto__ = proto;
-          return obj;
-        };
-      }
-    </script>
-    <!-- <script src="https://v1.cnzz.com/z_stat.php?id=1278235045&web_id=1278235045"></script> -->
-    <!--
+    <div class="loadingio-eclipse">
+      <div class="ldio">
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="//v1.cnzz.com/z_stat.php?id=1278235045&web_id=1278235045"></script>
+  <script>
+    // hack https://github.com/facebook/create-react-app/issues/5674
+    if ('%NODE_ENV%' === 'development') {
+      window.Map = window.Map || function () {
+        return {
+          set: function () { }
+        }
+      };
+      window.Set = window.Set || function () {
+        return {
+          set: function () { },
+          has: function () { }
+        }
+      };
+      Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
+        obj.__proto__ = proto;
+        return obj;
+      };
+    }
+  </script>
+  <!-- <script src="https://v1.cnzz.com/z_stat.php?id=1278235045&web_id=1278235045"></script> -->
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -55,5 +107,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
