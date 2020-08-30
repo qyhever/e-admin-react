@@ -26,6 +26,7 @@
 - babel-plugin-import `antd` 按需加载 `babel` 插件
 - cross-env 设置环境变量
 - @babel/plugin-proposal-decorators 装饰器插件
+- @babel/plugin-proposal-optional-chaining 可选链操作符
 - compression-webpack-plugin 生成 gzip 文件
 - sass-resources-loader 注入全局变量，混入方法
 - webpack-bundle-analyzer 可视化打包分析插件
