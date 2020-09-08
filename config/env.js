@@ -9,8 +9,8 @@ const dayjs = require('dayjs');
 delete require.cache[require.resolve('./paths')];
 
 const NODE_ENV = process.env.MODE_ENV || process.env.NODE_ENV;
-const isHash = process.env.npm_config_hash || false
-console.log('process.env.npm_config_hash', process.env.npm_config_hash)
+// const isHash = process.env.npm_config_hash || false
+// console.log('process.env.npm_config_hash', process.env.npm_config_hash)
 const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
 if (!NODE_ENV) {
   throw new Error(
@@ -89,7 +89,7 @@ function getClientEnvironment(publicUrl) {
         WDS_SOCKET_HOST: process.env.WDS_SOCKET_HOST,
         WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
         WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
-        IS_HASH: !!isHash,
+        // IS_HASH: !!isHash,
         NOW: now
       }
     );

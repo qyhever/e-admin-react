@@ -1,7 +1,7 @@
 import { createBrowserHistory, createHashHistory } from 'history'
 
 let history = null
-if (process.env.IS_HASH) {
+if (process.env.REACT_APP_IS_HASH) {
   history = createHashHistory()
 } else {
   history = createBrowserHistory({
