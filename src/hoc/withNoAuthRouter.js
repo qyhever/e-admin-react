@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { getToken } from '@/utils/local'
 import { getDisplayName } from '@/utils'
-import withNProgress from '@/hoc/withNProgress'
 
 function withNoAuthRouter(WrappedComponent) {
   class WithNoAuthRouter extends Component {
@@ -17,6 +16,6 @@ function withNoAuthRouter(WrappedComponent) {
       )
     }
   }
-  return withNProgress(WithNoAuthRouter)
+  return WithNoAuthRouter
 }
 export default withNoAuthRouter

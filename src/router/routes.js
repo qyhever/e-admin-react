@@ -10,6 +10,7 @@ import Exception404 from '@/views/exception/404'
 import Exception403 from '@/views/exception/403'
 
 import Login from '@/views/login'
+import Analysis from '@/views/analysis'
 
 function lazyComponent(path) {
   return lazy(() => import(/* webpackChunkName: '[request]' */`@/views/${path}`))
@@ -175,13 +176,26 @@ export const basicRoutes = [
     exact: true,
     title: '404',
     hidden: true
-  },
-  {
-    path: '*',
-    component: Exception404,
-    hidden: true
   }
 ]
+
+export const blankRoutes = [
+  {
+    path: '/login',
+    exact: true,
+    component: withNoAuthRouter(Login),
+    hidden: true
+  },
+  {
+    path: '/analysis',
+    exact: true,
+    component: Analysis,
+    title: '分析页',
+    icon: 'SmileOutlined'
+  }
+]
+
+export const routes = basicRoutes.concat(blankRoutes)
 
 export default [
   {
@@ -189,13 +203,14 @@ export default [
     exact: true,
     render: () => <Redirect to="/dashboard"/>
   },
-  {
-    path: '/login',
-    exact: true,
-    component: withNoAuthRouter(Login)
-  },
+  ...blankRoutes,
   {
     component: BasicLayout,
     routes: basicRoutes
+  },
+  {
+    path: '*',
+    component: Exception404,
+    hidden: true
   }
 ]
