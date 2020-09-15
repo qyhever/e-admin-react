@@ -7,6 +7,8 @@
 - [后端服务](https://github.com/qyhever/e-admin-server/)
 - [create-react-app 常见配置](https://segmentfault.com/a/1190000023327242)
 
+> 账号: admin 密码: 123456
+
 ### npm 脚本
 ##### 安装依赖
 ```shell
