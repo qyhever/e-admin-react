@@ -6,25 +6,13 @@ import 'nprogress/nprogress.css'
 
 export default function withNProgress(WrappedComponent) {
   return class extends Component {
-    state = {
-      isFirstRender: true
-    }
     static displayName = `WithNProgress(${getDisplayName(WrappedComponent)})`
-    static getDerivedStateFromProps(_, state) {
-      if (state.isFirstRender) {
-        // NProgress.isStarted()
-        NProgress.start()
-        return {
-          isFirstRender: false
-        }
-      }
-      return null
-    }
     componentDidMount() {
+      !NProgress.isRendered() && NProgress.start()
       this.unlisten = this.props.history.listen(() => {
         // 路由跳转时，取消上个路由还未完成的请求
         clearPending()
-        NProgress.start()
+        !NProgress.isRendered() && NProgress.start()
       })
       this.timer = setTimeout(() => {
         NProgress.done()

@@ -11,6 +11,7 @@ import Exception403 from '@/views/exception/403'
 
 import Login from '@/views/login'
 import Analysis from '@/views/analysis'
+import Market from '@/views/market'
 
 function lazyComponent(path) {
   return lazy(() => import(/* webpackChunkName: '[request]' */`@/views/${path}`))
@@ -83,6 +84,11 @@ export const basicRoutes = [
         path: '/richtext/tinymce',
         component: withAuthRouter(lazyComponent('richtext/Tinymce')),
         title: 'tinymce'
+      },
+      {
+        path: '/richtext/braft',
+        component: withAuthRouter(lazyComponent('richtext/Braft')),
+        title: 'braft'
       },
       {
         path: '*',
@@ -191,6 +197,13 @@ export const blankRoutes = [
     exact: true,
     component: Analysis,
     title: '分析页',
+    icon: 'SmileOutlined'
+  },
+  {
+    path: '/market',
+    exact: true,
+    component: Market,
+    title: '市场地图',
     icon: 'SmileOutlined'
   }
 ]

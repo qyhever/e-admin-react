@@ -7,6 +7,8 @@
 - [后端服务](https://github.com/qyhever/e-admin-server/)
 - [create-react-app 常见配置](https://segmentfault.com/a/1190000023327242)
 
+> 账号: admin 密码: 123456
+
 ### npm 脚本
 ##### 安装依赖
 ```shell
@@ -45,7 +47,7 @@ yarn run deploy
 - history 轻松管理浏览器历史记录
 - react-router-breadcrumbs-hoc 面包屑
 - axios `http`请求
-- qs
+- qs 参数序列化
 - md5
 - js-base64
 - react-custom-scrollbars 自定义滚动条
