@@ -108,12 +108,6 @@
     "webpackbar": "^4.0.0",
     "workbox-webpack-plugin": "4.3.1"
   },
-  "browserslist": [
-    ">0.2%",
-    "not ie <= 8",
-    "not dead",
-    "last 2 versions"
-  ],
   "jest": {
     "roots": [
       "<rootDir>/src"
