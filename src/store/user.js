@@ -23,18 +23,14 @@ class User {
   @action loginByAccount = async (data) => {
     const res = await login(data)
     const user = res.userInfo
+    const token = res.token
     user.resourceCodes = user.resources.map(item => item.code)
-    await this.initUserData({
-      user,
-      token: res.token
-    })
+    setUser(user) // set local
+    setToken(token) // set local
+    await this.initUserData(user)
   }
 
-  @action initUserData = async (data) => {
-    const { user, token } = data
-    setToken(token) // set local
-    setUser({ user, token }) // set local
-
+  @action initUserData = async (user) => {
     const menus = getAccessMenus(routes, user.resourceCodes)
     const breads = [...getFlattenMenus(routes), { path: '/', breadcrumb: '首页' }]
 

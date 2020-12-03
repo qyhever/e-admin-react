@@ -20,7 +20,7 @@ class BasicLayout extends Component {
     const { currentUser, menus } = userStore
     const branches = matchRoutes(route.routes, location.pathname)
     const branch = branches[branches.length - 1] || {}
-    const title = getTitle(branch.route.title)
+    const title = branch.route ? getTitle(branch.route.title) : ''
     const sideProps = {
       collapsed,
       menus,

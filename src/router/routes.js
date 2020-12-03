@@ -177,10 +177,8 @@ export const basicRoutes = [
     hidden: true
   },
   {
-    path: '/404',
+    path: '*',
     component: Exception404,
-    exact: true,
-    title: '404',
     hidden: true
   }
 ]
