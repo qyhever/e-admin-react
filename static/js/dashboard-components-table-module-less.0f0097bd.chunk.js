@@ -1,0 +1,1 @@
+(this["webpackJsonpe-admin-react"]=this["webpackJsonpe-admin-react"]||[]).push([[42],{918:function(a,t,e){a.exports={avatar:"table_avatar__K2uvT"}}}]);
