@@ -7,14 +7,15 @@ import { useStore } from '@/store'
 
 const PageWrapper = (props) => {
   const { userStore } = useStore()
-  const { wrapperClass, containerClass, hasBread, isColumn } = props
+  const { wrapperClass, containerClass, hasBread, isColumn, transparent } = props
   const { breads } = userStore
   const pageWrapperCls = classNames(
     styles.pageWrapper,
     wrapperClass,
     {
       [styles.hasBread]: hasBread,
-      [styles.isColumn]: isColumn
+      [styles.isColumn]: isColumn,
+      [styles.transparent]: transparent
     }
   )
   return (
@@ -31,7 +32,8 @@ PageWrapper.defaultProps = {
   wrapperClass: '',
   containerClass: '',
   hasBread: true,
-  isColumn: false // 通栏的固定高度，默认高度撑满屏幕（适合不需要滚动，内容少的页面）
+  isColumn: false, // 通栏的固定高度，默认高度撑满屏幕（适合不需要滚动，内容少的页面）
+  transparent: false
 }
 
 export default PageWrapper

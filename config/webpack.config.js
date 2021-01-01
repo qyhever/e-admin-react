@@ -61,6 +61,21 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
+const cdn = {
+  dev: {
+    css: [],
+    js: [
+      appPackageJson.homepage + 'echarts/echarts.js'
+    ]
+  },
+  build: {
+    css: [],
+    js: [
+      appPackageJson.homepage + 'echarts/echarts.min.js'
+    ]
+  }
+}
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -392,6 +407,15 @@ module.exports = function(webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            // svg-sprite-loader
+            {
+              test: /\.svg$/,
+              loader: 'svg-sprite-loader',
+              include: [path.resolve(__dirname, '../src/assets/icons')],
+              options: {
+                symbolId: 'svg-[name]'
+              }
+            },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
@@ -625,8 +649,11 @@ module.exports = function(webpackEnv) {
                   minifyCSS: true,
                   minifyURLs: true,
                 },
+                templateParameters: cdn.build
               }
-            : undefined
+            :  {
+              templateParameters: cdn.dev
+            }
         )
       ),
       // Inlines the webpack runtime script. This script is too small to warrant

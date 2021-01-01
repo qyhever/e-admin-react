@@ -6,6 +6,7 @@ import store from './store'
 import RouterConfig from './router'
 
 import './assets/styles/index.less'
+import './assets/icons'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'

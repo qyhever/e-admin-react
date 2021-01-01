@@ -1,0 +1,46 @@
+.pie {
+  height: 100%;
+  display: flex;
+}
+.chart {
+  flex: 1;
+  height: 100%;
+}
+.legendList {
+  margin: 0;
+  padding: 0;
+  flex: 0 0 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &.disabled {
+    .round {
+      background-color: #999 !important;
+    }
+    .name, .percent {
+      color: #999;
+    }
+  }
+  .round {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .name {
+    margin: 0 5px;
+    color: #151d35;
+  }
+  .percent {
+    color: #666;
+  }
+}

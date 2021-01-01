@@ -1,0 +1,73 @@
+.shadow {
+  transition: box-shadow .4s;
+  &:hover {
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
+  }
+}
+.dashboardContainer {
+  :global {
+    .ant-col {
+      // height: 170px;
+      // background-color: #fff;
+      margin-bottom: 20px;
+    }
+    .chart {
+      height: 400px;
+    }
+  }
+}
+.container {
+  display: flex;
+  align-items: center;
+  height: 170px;
+  padding: 20px 20px 20px 36px;
+  background-color: #fff;
+  cursor: pointer;
+  .shadow;
+  .icon {
+    display: flex;
+    font-size: 54px;
+    flex: 0 0 80px;
+    .circle {
+      color: rgb(100, 234, 145);
+    }
+    .team {
+      color: rgb(143, 201, 251);
+    }
+    .message {
+      color: rgb(216, 151, 235);
+    }
+    .cart {
+      color: rgb(246, 152, 153);
+    }
+  }
+  .content {
+    flex: auto;
+  }
+  .title {
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, .45);;
+    font-size: 16px;
+  }
+  .value {
+    margin-bottom: 0;
+    color: @color-text-regular;
+    font-size: 24px;
+  }
+}
+.line {
+  .shadow;
+  height: 400px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+.chartWrapper {
+  .shadow;
+  height: 400px;
+  background-color: #fff;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
