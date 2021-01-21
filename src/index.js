@@ -4,6 +4,7 @@ import 'mobx-react-lite/batchingForReactDom'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './utils/global'
+import './utils/visit'
 import App from './App'
 
 if (process.env.NODE_ENV !== 'development') {

@@ -6,7 +6,8 @@ import { history } from '@/utils/history'
 
 // 根据 REACT_APP_MODE 来切换接口跟路径
 const baseURL = {
-  dev: 'https://qyhever.com/e-admin',
+  dev: 'http://localhost:4399',
+  // dev: 'https://qyhever.com/e-admin',
   test: 'https://qyhever.com/e-admin',
   prod: 'https://qyhever.com/e-admin'
 }[process.env.REACT_APP_MODE]

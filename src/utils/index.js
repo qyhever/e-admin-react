@@ -1,3 +1,5 @@
+const AMap = window.AMap
+
 export const getTitle = (title) => {
   const baseTitle = 'e-admin'
   if (!title) {
@@ -115,4 +117,27 @@ export const getFlattenMenus = (routes) => {
     }
   })
   return result
+}
+
+export function queryLocalCity() {
+  return new Promise((resolve, reject) => {
+    const citysearch = new AMap.CitySearch()
+    citysearch.getLocalCity()
+    AMap.event.addListener(citysearch, 'complete', result => {
+      if (result.info === 'OK') {
+        const data = {
+          province: result.province,
+          city: result.city,
+          adcode: result.adcode
+        }
+        resolve(data)
+      } else {
+        reject(result)
+      }
+    })
+    AMap.event.addListener(citysearch, 'err', err => {
+      console.log('err', err)
+      reject(err)
+    })
+  })
 }
