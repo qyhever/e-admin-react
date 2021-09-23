@@ -11,7 +11,8 @@
     "test": "node scripts/test.js",
     "lint:fix": "eslint --fix --ext .js,.jsx src",
     "predeploy": "npm run build:hash",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "deploy:ng": "sh deploy.sh"
   },
   "dependencies": {
     "@ahooksjs/use-request": "^2.5.0",

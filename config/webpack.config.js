@@ -33,6 +33,7 @@ const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const CompressionPlugin = require('compression-webpack-plugin')
 const WebpackBar = require('webpackbar')
+const MetaInfoPlugin = require('./meta')
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -617,6 +618,7 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      isEnvProduction && new MetaInfoPlugin({ filename: 'dist/meta.json' }),
       new WebpackBar(),
       new AntdDayjsWebpackPlugin(),
       isEnvProduction && isBundleAnalyzer && new BundleAnalyzerPlugin(),

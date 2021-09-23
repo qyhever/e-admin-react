@@ -1,3 +1,4 @@
+const callbacks = []
 const asyncLoadScript = (src, existVariable, callback) => {
   const existingScript = document.getElementById(src)
   const cb = callback || function() {} // eslint-disable-line
@@ -7,6 +8,7 @@ const asyncLoadScript = (src, existVariable, callback) => {
     script.src = src
     script.id = src
     document.body.appendChild(script)
+    callbacks.push(cb)
     const onEnd = 'onload' in script ? stdOnEnd : ieOnEnd
     onEnd(script)
   }
@@ -14,6 +16,8 @@ const asyncLoadScript = (src, existVariable, callback) => {
   if (existingScript && cb) {
     if (existVariable) {
       cb(null, existingScript)
+    } else {
+      callbacks.push(cb)
     }
   }
 
@@ -22,7 +26,8 @@ const asyncLoadScript = (src, existVariable, callback) => {
       // this.onload = null here is necessary
       // because even IE9 works not like others
       this.onerror = this.onload = null
-      cb(null, script)
+      callbacks.forEach(fn => fn(null, script))
+      callbacks.length = 0
     }
     script.onerror = function() {
       this.onerror = this.onload = null
@@ -34,8 +39,8 @@ const asyncLoadScript = (src, existVariable, callback) => {
     script.onreadystatechange = function() {
       if (this.readyState !== 'complete' && this.readyState !== 'loaded') return
       this.onreadystatechange = null
-      // there is no way to catch loading errors in IE8
-      cb(null, script)
+      callbacks.forEach(fn => fn(null, script))
+      callbacks.length = 0
     }
   }
 }

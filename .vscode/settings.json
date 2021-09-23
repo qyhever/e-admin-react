@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 2,
+  "emmet.triggerExpansionOnTab": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // json 文件可以写注释
+  "files.associations": {
+    "*.json": "jsonc"
+  },
+  // 关闭 vetur 的格式化
+  "vetur.format.enable": false
+}

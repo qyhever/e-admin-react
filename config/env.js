@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
-const dayjs = require('dayjs');
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -11,7 +10,6 @@ delete require.cache[require.resolve('./paths')];
 const NODE_ENV = process.env.MODE_ENV || process.env.NODE_ENV;
 // const isHash = process.env.npm_config_hash || false
 // console.log('process.env.npm_config_hash', process.env.npm_config_hash)
-const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
 if (!NODE_ENV) {
   throw new Error(
     'The NODE_ENV environment variable is required but was not specified.'
@@ -89,8 +87,7 @@ function getClientEnvironment(publicUrl) {
         WDS_SOCKET_HOST: process.env.WDS_SOCKET_HOST,
         WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
         WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
-        // IS_HASH: !!isHash,
-        NOW: now
+        // IS_HASH: !!isHash
       }
     );
   // Stringify all values so we can feed into webpack DefinePlugin

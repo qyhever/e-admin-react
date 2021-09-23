@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback, useRef } from 'react'
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 import { message } from 'antd'
@@ -7,6 +7,7 @@ import { uploadFileToQiniu } from '@/api/global'
 
 export default function Braft(props) {
   const { value, onChange, ...restProps } = props
+  const editorIns = useRef(null)
   const onEditorChange = useMemo(() => {
     return debounce(v => {
       onChange && onChange(v)
@@ -26,6 +27,9 @@ export default function Braft(props) {
           alt: '加载失败'
         }
       })
+      setTimeout(() => {
+        editorIns.current.forceRender()
+      }, 20)
     } catch (err) {
       console.log(err)
       message.destroy()
@@ -35,6 +39,7 @@ export default function Braft(props) {
 
   return (
     <BraftEditor
+      ref={editorIns}
       {...restProps}
       value={BraftEditor.createEditorState(value)}
       onChange={onEditorChange}
