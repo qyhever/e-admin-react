@@ -1,4 +1,5 @@
-const fs = require('fs')
+const { readdir, mkdir, writeFile } = require('fs/promises')
+const path = require('path')
 const dayjs = require('dayjs')
 const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
@@ -8,22 +9,25 @@ class MetaInfoPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.done.tap(this.constructor.name, stats => {
+    compiler.hooks.done.tap(this.constructor.name, async stats => {
       const metaInfo = {
         // add any other information if necessary
         hash: stats.hash,
         lastDeployTime: now
       }
       const json = JSON.stringify(metaInfo, null, 2)
-      return new Promise((resolve, reject) => {
-        fs.writeFile(this.options.filename, json, 'utf8', error => {
-          if (error) {
-            reject(error)
-            return
-          }
-          resolve()
-        })
-      })
+      const distPath = path.resolve(__dirname, '../dist')
+      try {
+        const dirInfo = await readdir(distPath)
+        if (!dirInfo.length) {
+          await mkdir(distPath)
+        }
+      } catch (e) {
+        if (e) {
+          await mkdir(distPath)
+        }
+      }
+      return await writeFile(this.options.filename, json, 'utf8')
     })
   }
 }
