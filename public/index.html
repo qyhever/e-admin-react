@@ -115,7 +115,12 @@
   <script src="<%= js[i] %>"></script>
   <% } %>
   <!-- <script src="https://v1.cnzz.com/z_stat.php?id=1278235045&web_id=1278235045"></script> -->
-  <script src="https://webapi.amap.com/maps?v=1.4.15&key=6a169cffad64fb2322801c076ae7d3ec&plugin=AMap.CitySearch"></script>
+  <script>
+    window._AMapSecurityConfig = {
+      serviceHost: 'http://qyhever.com/_AMapService'
+    }
+  </script>
+  <script src="https://webapi.amap.com/maps?v=1.4.15&key=9ace730e33248ef1f462160f85445847&plugin=AMap.CitySearch"></script>
   <script src="https://pv.sohu.com/cityjson"></script>
   <!--
       This HTML file is a template.

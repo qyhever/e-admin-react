@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 import asyncLoadScript from '@/utils/async-script'
-const src = 'https://webapi.amap.com/maps?v=1.4.7&key=6a169cffad64fb2322801c076ae7d3ec&plugin=AMap.CitySearch,AMap.Autocomplete,AMap.PlaceSearch,AMap.Geocoder'
+const src = 'https://webapi.amap.com/maps?v=1.4.7&key=9ace730e33248ef1f462160f85445847&plugin=AMap.CitySearch,AMap.Autocomplete,AMap.PlaceSearch,AMap.Geocoder'
 
 function Analysis() {
   const mapRef = useRef(null)

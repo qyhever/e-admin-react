@@ -2,7 +2,7 @@
   "editor.tabSize": 2,
   "emmet.triggerExpansionOnTab": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   // json 文件可以写注释
   "files.associations": {
